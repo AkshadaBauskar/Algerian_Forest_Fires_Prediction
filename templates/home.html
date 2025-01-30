@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    
+    <!-- Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+        }
+        .card {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        .btn-primary {
+            width: 100%;
+            border-radius: 5px;
+            font-size: 18px;
+            padding: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card bg-white">
+            <h1>FWI Prediction</h1>
+            <!-- Form for user input -->
+            <form action="{{ url_for('predict_datapoint')}}" method="post">
+                <input type="text" name="Temperature" class="form-control" placeholder="Temperature" required>
+                <input type="text" name="RH" class="form-control" placeholder="RH" required>
+                <input type="text" name="Ws" class="form-control" placeholder="Ws" required>
+                <input type="text" name="Rain" class="form-control" placeholder="Rain" required>
+                <input type="text" name="FFMC" class="form-control" placeholder="FFMC" required>
+                <input type="text" name="DMC" class="form-control" placeholder="DMC" required>
+                <input type="text" name="ISI" class="form-control" placeholder="ISI" required>
+                <input type="text" name="Classes" class="form-control" placeholder="Classes" required>
+                <input type="text" name="Region" class="form-control" placeholder="Region" required>
+                
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+
+            <!-- Display prediction results -->
+            {% if results %}
+                <h2>THE FWI Prediction is {{ results }}</h2>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS for responsiveness (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
